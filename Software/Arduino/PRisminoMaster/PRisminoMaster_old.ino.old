@@ -1,0 +1,293 @@
+/***************************************************************************************
+ *
+ * Title:      PRismino I2C master sketch communicating with the Raspberry Pi via
+ *             serial and the motor controller via I2C.
+ * Date:       2014-05-27
+ *
+ ***************************************************************************************/
+#include <Wire.h>
+#include <prismino.h>
+#include <Servo.h>
+#include "I2Cdev.h"
+#include "MPU6050.h"
+#include "PRisminoMaster.h"
+
+enum cage_positions cagePos = CAGE_UP;
+
+Servo servoLeft;
+Servo servoRight;
+
+// IMU object instance
+MPU6050 imu;
+
+void setup()
+{
+  // set pin output mode (sources current)
+  pinMode(LED, OUTPUT);
+
+  // init serial bus
+  Serial.begin(9600);
+  // join i2c bus (as master)
+  Wire.begin();
+  
+  // initialise servo positions
+  setCagePosition(CAGE_UP);
+
+  // initialize IMU
+  imu.initialize();
+}
+
+void loop()
+{
+  //Serial.println(getDirection());
+  Serial.println(getSensor(0));
+  if(Serial.available())
+  {
+    digitalWrite(LED, HIGH);
+    switch(Serial.read())
+    {
+    case 'i':
+        Serial.println(getSensor(Serial.read()));
+        break;
+    case 's':
+        setMotorSpeed(Serial.read(), Serial.read());
+        break;
+    case 'c':
+        setCagePosition(Serial.read() == '1' ? CAGE_UP : CAGE_DOWN);
+        break;
+    case 'm':
+        Serial.println(getDirection());
+        break;
+    case 'w':
+        setMotorSpeed(MAX_SPEED, MAX_SPEED);
+        break;
+    /*case 's':
+        setMotorSpeed(-MAXspeed, -MAXspeed);
+        break;
+    case 'a':
+        setMotorSpeed(-MAXspeed, MAXspeed);
+        break;
+    case 'd':
+        setMotorSpeed(MAXspeed, -MAXspeed);
+        break;*/
+    case 'q':
+        setMotorSpeed(0, 0);
+        break;
+    case 'v' :
+        getPower();
+        break;
+    }
+    digitalWrite(LED, LOW);
+  }
+}
+
+void setCagePosition(cage_positions position)
+{
+  servoLeft.attach(S1);
+  servoRight.attach(S2);
+  
+  if(position == CAGE_UP)
+  {
+    servoLeft.write(SERVO_LEFT_UP);
+    servoRight.write(SERVO_RIGHT_UP);
+  }
+  else if(position == CAGE_DOWN)
+  {
+    servoLeft.write(SERVO_LEFT_DOWN);
+    servoRight.write(SERVO_RIGHT_DOWN);
+  }
+  
+  delay(1000);
+  
+  servoLeft.detach();
+  servoRight.detach();
+}
+
+uint16_t getSensor(uint8_t id)
+{
+  uint16_t value;
+  switch(id)
+  {
+  case 0:
+    value = analogRead(A0);
+    break;
+  case 1:
+    value = analogRead(A1);
+    break;
+  case 2:
+    value = analogRead(A2);
+    break;
+  case 3:
+    value = analogRead(A3);
+    break;
+  case 4:
+    value = analogRead(A4);
+    break;
+  case 5:
+    value = analogRead(A5);
+    break;
+  default:
+    value = 0;
+  }
+  return value;
+}
+
+void setMotorSpeed(int8_t speedLeft, int8_t speedRight)
+{
+  Wire.beginTransmission(I2C_MOTOR_CONTROLLER_ADDRESS);
+  Wire.write("s");
+  
+  // make sure not to go over the maximum speed limit
+  if(speedLeft > MAX_SPEED)
+  {
+    Wire.write(MAX_SPEED);
+  }
+  else if(speedLeft < -MAX_SPEED)
+  {
+    Wire.write(-MAX_SPEED);
+  }
+  else
+  {
+    Wire.write(speedLeft);
+  }
+  
+  if(speedRight > MAX_SPEED)
+  {
+    Wire.write(MAX_SPEED);
+  }
+  else if(speedRight < -MAX_SPEED)
+  {
+    Wire.write(-MAX_SPEED);
+  }
+  else
+  {
+    Wire.write(speedRight);
+  }
+  
+  Wire.endTransmission();
+}
+
+void obstacleAvoidance()
+{
+  int8_t speedLeft, speedRight;
+  uint16_t irLeft, irRight;
+  
+  irLeft = analogRead(A0);
+  irRight = analogRead(A1);
+  
+  if(irRight < 300)
+  {
+    speedLeft = 0;
+  }
+  else
+  {
+    speedLeft = MAX_SPEED;
+  }
+  
+  if(irRight < 300)
+  {
+    speedRight = 0;
+  }
+  else
+  {
+    speedRight = MAX_SPEED;
+  }
+  
+  setMotorSpeed(speedLeft, speedRight);
+}
+
+int16_t getDirection()
+{
+  int16_t mx, my, mz;
+  imu.getMag(&mx, &my, &mz);
+  
+  return mz;
+}
+
+void getPower()
+{
+  Wire.beginTransmission(I2C_MOTOR_CONTROLLER_ADDRESS);
+  // casting needed for some reason
+  uint8_t available = Wire.requestFrom((uint8_t)I2C_MOTOR_CONTROLLER_ADDRESS, (uint8_t)6);
+  uint16_t value;
+  uint8_t i;
+  
+  // read 6 bytes, 2 by 2, high byte first: voltage, left motor current, right motor current
+  if(available == 6)
+  {
+    for(i = 0; i < 3; i++)
+    {
+      value = (Wire.read() << 8) | Wire.read();
+      Serial.println(value);
+    }
+  }
+  else
+  {
+    // inform i2c error
+    play(TONE_ERROR, 500);
+  }
+
+  Wire.endTransmission();
+}
+
+int convertDist(int sensorValue)
+{ 
+  int outputValue;
+  if(sensorValue < 41)
+    outputValue = 80;
+  else if(sensorValue < 82)
+    outputValue = 75;
+  else if(sensorValue < 82)
+    outputValue = 70;    
+  else if(sensorValue < 84)
+    outputValue = 65;
+  else if(sensorValue < 88)
+    outputValue = 60;    
+  else if(sensorValue < 94)
+    outputValue = 55;
+  else if(sensorValue < 102)
+    outputValue = 50;
+  else if(sensorValue < 113)
+    outputValue = 45;
+  else if(sensorValue < 124)
+    outputValue = 40;
+  else if(sensorValue < 135)
+    outputValue = 37;
+  else if(sensorValue < 146)
+    outputValue = 34;
+  else if(sensorValue < 159)
+    outputValue = 31;
+  else if(sensorValue < 174)
+    outputValue = 28;
+  else if(sensorValue < 192)
+    outputValue = 25;
+  else if(sensorValue < 215)
+    outputValue = 22;
+  else if(sensorValue < 241)
+    outputValue = 19;
+  else if(sensorValue < 269)
+    outputValue = 17;
+  else if(sensorValue < 301)
+    outputValue = 15;
+  else if(sensorValue < 344)
+    outputValue = 13;
+  else if(sensorValue < 398)
+    outputValue = 11;
+  else if(sensorValue < 465)
+    outputValue = 9;
+  else if(sensorValue < 559)
+    outputValue = 7;
+  else if(sensorValue < 625)
+    outputValue = 5;
+    
+  return outputValue;                     
+}
+
+//void set_motor_speed(int8_t speed_left,int8_t speed_right)
+//{
+//  Wire.beginTransmission(I2C_MOTOR_CONTROLLER_ADDRESS);
+//  Wire.write("s");
+//  Wire.write(speed_left); // sends one byte  
+//  Wire.write(speed_right);
+//  Wire.endTransmission();    // stop transmitting 
+//}

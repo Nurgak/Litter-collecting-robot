@@ -1,0 +1,2 @@
+void bluetoothCommunication();
+void serialCommunication();

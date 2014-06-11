@@ -1,0 +1,31 @@
+#######################################
+# Syntax Coloring Map For WildThumper
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+wildthumper	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setSpeed	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+S0	LITERAL1
+S1	LITERAL1
+S2	LITERAL1
+S3	LITERAL1
+S4	LITERAL1
+S5	LITERAL1
+S6	LITERAL1
+BAT	LITERAL1
+MOTLI	LITERAL1
+MOTRI	LITERAL1
+CHARGE	LITERAL1

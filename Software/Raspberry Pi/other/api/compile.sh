@@ -1,0 +1,1 @@
+g++ -L/usr/lib/uv4l/uv4lext/armv6l -I ./src/ -L ./ -lraspicam -luv4lext -Wl,-rpath,'/usr/lib/uv4l/uv4lext/armv6l' `pkg-config --cflags opencv` `pkg-config --libs opencv` -o FindContours FindContours.cpp

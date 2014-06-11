@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map For PRismino
+# Only 1 tab between values any type!
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+prismino	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+play	KEYWORD2
+setSpeed	KEYWORD2
+dipSwitch	KEYWORD2
+setTimer	KEYWORD2
+unsetTimer	KEYWORD2
+buttonCallback	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+S1	LITERAL1
+S2	LITERAL1
+BZR	LITERAL1
+BUZZER	LITERAL1
+DIP1	LITERAL1
+DIP2	LITERAL1
+DIP3	LITERAL1
+DIP4	LITERAL1
+BTN	LITERAL1
+BUTTON	LITERAL1
+LED	LITERAL1
+POT	LITERAL1

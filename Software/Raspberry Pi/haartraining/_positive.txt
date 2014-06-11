@@ -1,0 +1,99 @@
+samples/img_0000.jpg 1 74 66 34 30
+samples/img_0001.jpg 2 78 69 31 25 218 129 61 38
+samples/img_0003.jpg 1 83 72 21 21
+samples/img_0005.jpg 1 76 65 19 17
+samples/img_0006.jpg 1 127 112 37 24
+samples/img_0007.jpg 2 83 72 22 21 127 112 36 22
+samples/img_0008.jpg 2 107 106 37 22 72 65 23 17
+samples/img_0009.jpg 1 125 113 43 21
+samples/img_0010.jpg 2 81 76 26 21 130 113 35 22
+samples/img_0011.jpg 2 215 125 56 40 127 111 39 23
+samples/img_0012.jpg 3 82 73 54 43 193 119 57 36 130 113 35 23
+samples/img_0013.jpg 1 130 111 35 25
+samples/img_0014.jpg 3 78 73 42 36 133 112 30 21 201 116 84 49
+samples/img_0015.jpg 2 76 66 67 58 182 121 47 31
+samples/img_0016.jpg 1 78 73 29 25
+samples/img_0017.jpg 1 70 67 26 21
+samples/img_0018.jpg 1 80 70 25 20
+samples/img_0019.jpg 2 78 68 24 21 207 125 55 39
+samples/img_0020.jpg 1 148 109 50 31
+samples/img_0021.jpg 1 80 73 23 19
+samples/img_0022.jpg 1 142 109 40 26
+samples/img_0023.jpg 1 78 73 22 20
+samples/img_0025.jpg 1 78 70 27 23
+samples/img_0029.jpg 1 81 75 23 20
+samples/img_0030.jpg 1 80 74 24 22
+samples/img_0031.jpg 1 76 73 29 29
+samples/img_0032.jpg 1 87 84 32 26
+samples/img_0033.jpg 1 77 69 27 26
+samples/img_0036.jpg 1 80 72 28 25
+samples/img_0039.jpg 1 219 148 63 29
+samples/img_0040.jpg 1 215 125 65 52
+samples/img_0041.jpg 1 220 147 59 31
+samples/img_0044.jpg 2 103 99 37 26 140 88 85 46
+samples/img_0045.jpg 2 85 86 27 18 137 89 87 46
+samples/img_0071.jpg 1 81 60 37 44
+samples/img_0074.jpg 1 126 103 54 32
+samples/img_0075.jpg 2 76 70 27 31 219 115 77 53
+samples/img_0076.jpg 1 210 127 61 36
+samples/img_0077.jpg 1 78 71 24 20
+samples/img_0079.jpg 1 80 73 22 20
+samples/img_0082.jpg 1 77 69 29 30
+samples/img_0083.jpg 2 80 69 22 23 89 90 33 23
+samples/img_0084.jpg 1 78 69 34 36
+samples/img_0086.jpg 2 76 73 40 32 122 97 38 28
+samples/img_0089.jpg 1 76 74 33 26
+samples/img_0090.jpg 1 77 75 63 46
+samples/img_0093.jpg 1 189 110 47 41
+samples/img_0094.jpg 1 118 93 49 26
+samples/img_0095.jpg 1 79 68 25 25
+samples/img_0097.jpg 2 80 73 22 18 99 89 28 26
+samples/img_0098.jpg 1 133 102 43 30
+samples/img_0101.jpg 1 91 79 43 35
+samples/img_0102.jpg 2 79 65 27 26 103 91 40 33
+samples/img_0103.jpg 1 81 74 30 24
+samples/img_0104.jpg 1 83 72 24 19
+samples/img_0107.jpg 1 94 88 37 24
+samples/img_0108.jpg 1 80 71 20 22
+samples/img_0109.jpg 1 79 72 28 22
+samples/img_0110.jpg 2 71 61 54 44 118 96 41 32
+samples/img_0112.jpg 1 79 69 55 46
+samples/img_0113.jpg 1 76 64 34 37
+samples/img_0115.jpg 1 78 70 26 20
+samples/img_0116.jpg 1 77 70 42 38
+samples/img_0117.jpg 1 81 74 27 25
+samples/img_0118.jpg 1 179 115 62 39
+samples/img_0119.jpg 2 81 74 33 34 132 108 44 30
+samples/img_0123.jpg 1 80 72 22 17
+samples/img_0124.jpg 1 77 68 25 25
+samples/img_0129.jpg 1 87 75 33 31
+samples/img_0130.jpg 1 85 83 44 30
+samples/img_0131.jpg 1 80 69 24 24
+samples/img_0133.jpg 1 79 79 31 23
+samples/img_0134.jpg 1 92 88 33 27
+samples/img_0135.jpg 1 78 73 27 23
+samples/img_0141.jpg 1 85 77 30 30
+samples/img_0142.jpg 1 80 71 23 21
+samples/img_0143.jpg 2 80 72 22 20 102 90 38 24
+samples/img_0144.jpg 1 80 65 52 46
+samples/img_0145.jpg 1 176 114 47 33
+samples/img_0221.jpg 2 72 54 44 50 166 118 41 27
+samples/img_0222.jpg 1 79 56 41 51
+samples/img_0223.jpg 1 74 52 59 63
+samples/img_0224.jpg 1 125 100 37 22
+samples/img_0225.jpg 1 77 72 31 27
+samples/img_0226.jpg 1 79 69 37 38
+samples/img_0228.jpg 2 77 73 51 40 167 106 65 36
+samples/img_0229.jpg 2 81 73 42 40 146 108 48 30
+samples/img_0230.jpg 1 76 72 36 38
+samples/img_0237.jpg 1 171 119 50 33
+samples/img_0238.jpg 1 82 72 21 22
+samples/img_0240.jpg 2 79 74 51 37 148 90 60 51
+samples/img_0231.jpg 1 75 69 32 29
+samples/img_0242.jpg 2 77 62 27 33 214 133 55 32
+samples/img_0243.jpg 1 79 62 39 47
+samples/img_0245.jpg 1 178 118 48 34
+samples/img_0247.jpg 1 81 74 26 23
+samples/img_0248.jpg 1 71 67 35 29
+samples/img_0249.jpg 1 85 78 41 28
+samples/img_0250.jpg 1 78 66 30 33
